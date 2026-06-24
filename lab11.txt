@@ -1,0 +1,35 @@
+devops organisation
+view my organisation
+create Project
+pipelines -> create pipelines 
+
+choose git YAML
+choose maven for 10 and valet for 11
+
+run the yaml 
+
+end for prog 10
+
+for prog11
+
+continue
+
+releases -> new pipeline -> empty job (right side) -> add an artifact (left) -> choose source (right) -> click add
+
+now tasks (pipeline ke bagal me)
+-> agent job -> in agent pool (right side)choose azure pipelines -> agent specification -> choose ubuntu-22.04 -> click save -> click OK
+
+-> vapas releases -> click on create release  -> in dropdown select stage 1 -> click create
+
+click on Release 1 (that is created) -> then click on deploy -> again deploy
+
+
+
+
+######
+Azure- rogu23ise@cmrit.ac.in
+password - rogu23ise@**
+Git- Roshan-Gupta-og
+Password ( Roshan.gupta98442)
+roshangupta2064@gmail.com
+Password - Roshan@9844251

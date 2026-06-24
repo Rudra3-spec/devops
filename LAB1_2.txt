@@ -42,6 +42,8 @@ ls
 cat pom.xml
 
 mvn clean install 
+or
+mvn clean install package
 
 ls
 cd target

@@ -27,6 +27,15 @@ mvn -version
 
 mvn archetype:generate - {Enter values when asked. (write 2309, 9, …),Then type: Y}
 
+first two times just enter :
+then :
+groupId: com.example
+artifactId: artifact1
+version: 1.0-SNAPSHOT
+package: com.example
+Confirm: Y
+can press enter also 
+
 ls
 cd artifact1
 ls

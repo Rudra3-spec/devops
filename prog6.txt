@@ -64,6 +64,7 @@ java -jar my-app-1.0-SNAPSHOT.jar
 o/p: Hello world
 
 
+the above program ended the below is the shorter version , try either of them to execute if one gives error then go for the other 
 
 
 ###########

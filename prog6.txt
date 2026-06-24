@@ -1,0 +1,104 @@
+Jenkins Installation on Linux:-
+----------------------------------------
+
+
+https://www.youtube.com/watch?v=lRpS2CovMrs
+
+1: Update System and Install Java
+
+sudo apt update
+sudo apt install openjdk-17-jdk -y
+java -version
+
+2.Jenkins Installation on Ubuntu (Latest Method)
+
+https://pkg.jenkins.io/
+
+3: Start and Enable Jenkins
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+sudo systemctl status jenkins  # Check if Jenkins is running
+
+or
+
+sudo service jenkins start
+sudo service jenkins status
+
+4: Get Jenkins Admin Password
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+
+5: Access Jenkins Web Interface
+
+first allow custom tcp port 8080 by selecting anywhere with ipv4 with all zeros in security grops of that instance 
+http://your-server-ip(public-ip):8080
+
+0d740e938eef4641b36cd509577aabfe
+
+6.next install maven
+
+wget https://archive.apache.org/dist/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+sudo tar -xvzf apache-maven-3.9.6-bin.tar.gz -C /opt/
+echo 'export M2_HOME=/opt/apache-maven-3.9.6' | sudo tee -a /etc/profile.d/maven.sh
+echo 'export PATH=$M2_HOME/bin:$PATH' | sudo tee -a /etc/profile.d/maven.sh
+source /etc/profile.d/maven.sh
+mvn -version
+
+
+7.next go to jenkins ui there under manage plugins , install maven integartion plugin,next go to tools 
+there add maven like give name as maven 3.9.6, uncheck install automatically there u type /opt/apache-maven-3.9.6
+clik save
+
+https://github.com/Rudra3-spec/simple-java-maven-app
+8.next create a freetsyle job under this give git repo and under build steps
+select Invoke top-level Maven targets , next type maven version as Maven 3.9.6 and goals as clean install and save
+
+9.next run the build, there it will show you the jar file creation
+
+10. to check our jar file
+sudo su - jenkins
+cd /var/lib/jenkins/.m2/repository/com/mycompany/app/my-app/1.0-SNAPSHOT/
+
+11.to see the outcome of jar file
+java -jar my-app-1.0-SNAPSHOT.jar
+o/p: Hello world
+
+
+
+
+###########
+
+# 1. Install Java
+sudo apt update && sudo apt install openjdk-21-jdk -y && java -version
+
+# 2. Install Maven
+wget https://archive.apache.org/dist/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz && sudo tar -xzf apache-maven-3.9.6-bin.tar.gz -C /opt/ && echo 'export PATH=/opt/apache-maven-3.9.6/bin:$PATH' | sudo tee /etc/profile.d/maven.sh && source /etc/profile.d/maven.sh && mvn -version
+
+# 3. Install Jenkins
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null && echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null && sudo apt update && sudo apt install jenkins -y
+
+# 4. Start Jenkins
+sudo systemctl start jenkins && sudo systemctl enable jenkins && sudo systemctl status jenkins
+
+# 5. Get Jenkins Password
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# 6. Open Jenkins
+http://YOUR_PUBLIC_IP:8080
+
+# 7. Configure Maven in Jenkins
+Manage Jenkins → Plugins → Install “Maven Integration Plugin” → Manage Jenkins → Tools → Add Maven → Name: Maven 3.9.6 → Uncheck Install Automatically → Path: /opt/apache-maven-3.9.6 → Save
+
+# 8. Create Freestyle Job (home)
+New Item → Freestyle Project → Source Code Management → Git → Repo URL:
+https://github.com/bindiyaaj-blr/simple-java-maven-app.git
+Build Steps → Invoke top-level Maven targets → Maven Version: Maven 3.9.6 → Goals: clean install → Save
+
+# 9. Build Project
+Build Now
+
+# 10. Check JAR File
+sudo su - jenkins && cd /var/lib/jenkins/.m2/repository/com/mycompany/app/my-app/1.0-SNAPSHOT/ && ls
+
+# 11. Run JAR
+java -jar my-app-1.0-SNAPSHOT.jar
